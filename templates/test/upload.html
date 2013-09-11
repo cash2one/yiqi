@@ -1,0 +1,12 @@
+{% extends "layout/mbase.html" %}
+
+{% block mnav %}
+{{common.mnav("index")}}
+{% endblock %}
+
+{% block container %}
+<form action="/upload" method="post" enctype="multipart/form-data">
+	<input type="file" name="Filedata" />
+	<input type="submit" value="提交" />
+</form>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "layout/sbase.html" %}
+
+{% block css %}
+		<link href="/static/css/dist/my.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block frontmnav %}
+{{common.frontmnav("about")}}
+{% endblock %}
+
+{% block container %}
+<div class="main">
+	<div class="bg"></div>
+	<div class="s960 warp">
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				<div class="uinfo">
+					<h3 class="nick"><span>您好，</span>{{user.nick}}</h3>
+					<p>
+						<span>用户类型：</span>
+						{% if user.card=='' %}
+						<span class="v not"></span>
+						{% else %}
+						<span class="v is"></span>
+						{% endif %}
+					</p>
+					<p>
+						<span>会员积分：</span>
+						<span class="score"> {{ user.point if user.point else 0 }} </span>
+					</p>
+					<div class="line"></div>
+					<p>
+						<span>注册邮箱：</span>
+						{{user.email}}
+					</p>
+					<p>
+						<span>加入时间：</span>
+						{{user.ctime|ftime(fromat='%Y-%m-%d',short=false)}}
+					</p>
+				</div>
+			</div>
+			<div class="pure-u-3-4">
+                        <div class="main-content clearfix">
+                            <div class="cap clearfix">
+                                <h3>会员激活</h3>
+                            </div>
+                            <div class="vipintro">
+                               <h4>会员服务费：</h4>
+                               <p>v i p会员&nbsp;&nbsp;100元/年</p>
+                               <p>普通会员&nbsp;&nbsp;免费</p>
+                               <h4>会员权利：</h4>
+                               <p>
+       1.享受到全下沙最火热的商家消费的终身打折的优惠
+                               </p>
+                               <p>
+   2.免费参加天边外俱乐部所举办的一年的近20场的文化娱乐活动
+                               </p>
+                               <h4>会员年限：</h4>
+                               <p>一年</p>
+                               <h4>支付方式：</h4>
+                               <div>
+                                   <a href="#" class="alipay"></a>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+

@@ -1,0 +1,68 @@
+{% import "macro/common.html" as common%}
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>天边外</title>
+		<link rel="shortcut icon" href="/static/images/favicon.ico">
+		<link href="/static/css/third/pure-min.css" type="text/css" rel="stylesheet" />
+		<link href="/static/css/dist/pure-customize.css" type="text/css" rel="stylesheet" />
+		<link href="/static/css/dist/base.css" type="text/css" rel="stylesheet" />
+		<link href="/static/css/dist/main.css" type="text/css" rel="stylesheet" />
+		{% block css %}
+		{% endblock %}
+		<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="/static/js/coin-slider.min.js"></script>
+		{% block js %}
+		{% endblock %}
+	</head>
+	<body>
+		{% if session.uid%}
+		<div class="topbar">
+			<div class="s960">
+				<div class="links">
+					你好！<a href="/baseinfo">{{session.nick}}</a>
+					<span>|</span>
+					<a href="/baseinfo">我的信息</a>
+					<span>|</span>
+					{%if session.isVip != 1%}
+					<a href="/huiyuan">会员优惠</a>
+					<span>|</span>
+					{%endif%}
+					<a href="/logout">安全退出</a>
+				</div>
+			</div>
+		</div>
+		{% else %}
+		<div class="topbar">
+			<div class="s960">
+				<div class="links">
+					<a href="/login">登录</a>
+					<span>|</span>
+					<a href="/register">注册</a>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		<div class="header clearfix">
+			{% block frontmnav %}
+			{% endblock %}
+		</div>
+
+		{% block container %}
+		{% endblock %}
+
+		<div class="footer">
+			<div class="links">
+				<a href="/">首页</a>
+				<span>|</span>
+				<a href="/partner/list">合作商家</a>
+				<span>|</span>
+				<a href="/aboutUs">关于我们</a>
+			</div>
+			<p>
+				© 2013-2014 天边外文化俱乐部 版权所有  浙ICP备 13025149
+			</p>
+		</div>
+	</body>
+</html>

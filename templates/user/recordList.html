@@ -1,0 +1,64 @@
+{% extends "layout/sbase.html" %}
+
+{% block css %}
+<link href="/static/css/dist/my.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{% block frontmnav %}
+{{common.frontmnav("")}}
+{% endblock %}
+
+{% block container %}
+<div class="main">
+	<div class="bg"></div>
+	<div class="s960 warp">
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				{% include 'include/user/userinfo.html' %}
+			</div>
+			<div class="pure-u-3-4">
+				<div class="main-content clearfix">
+					<div class="cap clearfix">
+						<h3>会员消费记录</h3>
+					</div>
+					<div class="orders clearfix">
+						<table class="pure-table pure-table-odd">
+							<thead>
+								<tr>
+									<th>消费编号</th>
+									<th>店铺名称</th>
+									<th width="50">消费金额</th>
+									<th width="80">消费时间</th>
+									<th width="30">类型</th>
+									<th>消费内容</th>
+								</tr>
+							</thead>
+							<tbody>
+								{%for record in recordList%}
+								<tr>
+									<td>{{record.csm_code}}</td>
+									<td>{{record.csm_shop_name}}</td>
+									<td>{{record.csm_total}}</td>
+									<td>{{record.csm_date|ftime(fromat='%Y-%m-%d', short=False)}}</td>
+									<td>{{record.csmd_type}}</td>
+									<td>{{record.csmd_content}}</td>
+								</tr>
+								{%endfor%}
+							</tbody>
+						</table>
+						<div class="page clearfix">
+							<ul class="pure-paginator">
+								{{common.pager(pager,"/baseinfo?pagenum=:page:")}}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,31 @@
+{% extends "layout/base.html" %}
+
+{% block css %}
+{{common.css('syserror')}}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="main-body">
+	<span class="ico"></span>
+	<h3>非常抱歉，系统又泡妹子去了。。。</h3>
+	<span class="time">5秒后</span>
+	<a href="/">返回首页</a>
+</div>
+
+<div class="footer">
+	<p class="copyright">
+		<a href="/">走呗网</a>
+		©2012&nbsp;&nbsp;浙ICP备12031784号-1
+		<a href="/aboutus">关于走呗</a>
+		<a href="/contactus">联系我们</a>
+	</p>
+</div>
+<script type="text/javascript">
+	setTimeout(function() {
+		window.location.href = '/';
+	}, 5000); 
+</script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% import "macro/component.html" as common%}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Language" content="zh-CN" />
+		{% block meta%}
+		{% endblock%}
+
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="shortcut icon" href="/static/images/favicon.ico">
+
+		<link type="text/css" rel="stylesheet" href="/static/zui/bootstrap/css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="/static/zui//bootstrap/css/bootstrap-responsive.min.css" />
+		<link type="text/css" rel="stylesheet" href="/static/manage/css/styles.css"/>
+		{% block css %}
+		{% endblock %}
+
+		<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="/static/zui/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/static/js/formUtils.js"></script>
+		{% block js %}
+		{% endblock %}
+	</head>
+	<body>
+		<div class="container">
+			<h3><img src="/static/css/img/logo.png"></h3>
+		</div>
+
+		<div class="navbar navbar-static-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="/m/index">{{gconf.web_name}}</a>
+					{% block mnav %}
+					{% endblock %}
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				{% block container %}
+				{% endblock %}
+			</div>
+		</div>
+	</body>
+</html>
+

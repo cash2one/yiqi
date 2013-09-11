@@ -1,0 +1,24 @@
+<div class="uinfo">
+	<h3 class="nick"><span>您好，</span>{{user.nick}}</h3>
+	<p>
+		<span>用户类型：</span>
+		{% if user.isVip==1 %}
+		<span class="v is"></span>
+		{% else %}
+		<span class="v not"></span>
+		{% endif %}
+	</p>
+	<!-- <p>
+		<span>会员积分：</span>
+		<span class="score"> {{ user.point if user.point else 0 }} </span>
+	</p> -->
+	<div class="line"></div>
+	<p>
+		<span>注册邮箱：</span>
+		{{user.email}}
+	</p>
+	<p>
+		<span>加入时间：</span>
+		{{user.ctime|ftime(fromat='%Y-%m-%d',short=false)}}
+	</p>
+</div>

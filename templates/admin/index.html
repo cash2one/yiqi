@@ -1,0 +1,30 @@
+{% extends "layout/mbase.html" %}
+
+{% block mnav %}
+{{common.mnav("index")}}
+{% endblock %}
+
+{% block container %}
+<div class="span3">
+	<div class="well zb-side-nav">
+		<ul class="nav nav-list">
+			<li class="active">
+				<a href="#">系统信息<i class="icon-chevron-right"></i></a>
+			</li>
+			<li>
+				<a href="/m/changepwd">修改密码<i class="icon-chevron-right"></i></a>
+			</li>
+			<li>
+				<a href="/mlogout">安全退出<i class="icon-chevron-right"></i></a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="span9">
+	<div class="well">
+		<div class="hero-unit">
+			<h3>欢迎使用 {{gconf.web_name}} 后台管理系统</h3>
+		</div>
+	</div>
+</div>
+{% endblock %}

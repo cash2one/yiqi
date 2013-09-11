@@ -1,0 +1,87 @@
+{% extends "layout/sbase.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/zui/pickadate/compressed/themes/classic.css" />
+<link rel="stylesheet" type="text/css" href="/static/zui/pickadate/compressed/themes/classic.date.css" />
+<link href="/static/css/dist/my.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/static/zui/pickadate/compressed/picker.js"></script>
+<script type="text/javascript" src="/static/zui/pickadate/compressed/picker.date.js"></script>
+<script type="text/javascript" src="/static/zui/pickadate/compressed/legacy.js"></script>
+<script type="text/javascript" src="/static/zui/pickadate/compressed/translations/zh_CN.js"></script>
+<script type="text/javascript" src="/static/js/formUtils.js"></script>
+<script type="text/javascript" src="/static/js/p.vipInfo.js"></script>
+<script>
+	$(function() {
+		$('#J-birthday-inp').pickadate({
+			format : 'yyyy-mm-dd',
+			max : new Date(),
+			selectYears : true,
+			selectYear : '1990',
+			selectMonths : true
+		});
+	}); 
+</script>
+{% endblock %}
+
+{% block frontmnav %}
+{{common.frontmnav("")}}
+{% endblock %}
+
+{% block container %}
+<div class="main">
+	<div class="bg"></div>
+	<div class="s960 warp">
+		<div class="pure-g">
+			<div class="pure-u-1-4">
+				{% include 'include/user/userinfo.html' %}
+			</div>
+			<div class="pure-u-3-4">
+				<div class="main-content clearfix">
+					<div class="cap clearfix">
+						<h3>填写会员基本信息</h3>
+					</div>
+					<div class="clearfix">
+						<form id="J-form-vipInfo" class="pure-form pure-form-aligned">
+							<div class="pure-control-group">
+								<label>姓 &nbsp;&nbsp; 名：</label>
+								<input type="text" name="name" value="{{user.name}}" data-validation='require'/>
+							</div>
+							<div class="pure-control-group">
+								<label>性 &nbsp;&nbsp; 别：</label>
+								<select name="sex">
+									<option {% if user.sex == '男'%}selected="selected"{%endif%}>男</option>
+									<option {% if user.sex == '女'%}selected="selected"{%endif%}>女</option>
+								</select>
+							</div>
+							<div class="pure-control-group">
+								<label>地 &nbsp;&nbsp; 址：</label>
+								<input type="text" name="addr" value="{{user.addr}}" data-validation='require'/>
+							</div>
+							<div class="pure-control-group">
+								<label>手机号：</label>
+								<input type="text" name="phone" value="{{user.phone}}" data-validation='require phone'/>
+							</div>
+							<div class="pure-control-group">
+								<label>生 &nbsp;&nbsp; 日：{{user.birthday}}</label>
+								<input type="text" name="birthday" id="J-birthday-inp" style="color: #000;" data-value="{{user.birthday.strftime('%Y/%m/%d') if user.birthday else '1990/01/01'}}" />
+							</div>
+							<div class="pure-control-group">
+								<label>身份证：</label>
+								<input type="text" name="idcard" value="{{user.idcard}}" data-validation='require idcard'/>
+							</div>
+							<div class="pure-controls">
+								<a class="pure-button pure-button-primary" id="J-vipInfo-btn"> 保存 </a>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

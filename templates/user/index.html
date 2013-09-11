@@ -1,0 +1,135 @@
+{% extends "layout/sbase.html" %}
+
+{% block css %}
+		<link href="/static/css/dist/index.css" type="text/css" rel="stylesheet" />
+		<link href="/static/css/third/coin-slider-styles.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block js %}
+<script>
+	$(function() {
+		$('#J-search-inp').keydown(function(e) {
+			if (e.keyCode == 13) {
+				if ($.trim($(this).val())) {
+					window.location.href = '/activity/search?title=' + $.trim($(this).val());
+				}
+			}
+		});
+
+		$('#J-search-btn').click(function(e) {
+			if ($.trim($('#J-search-inp').val())) {
+				window.location.href = '/activity/search?title=' + $.trim($('#J-search-inp').val());
+			}
+		});
+	}); 
+	$(function() {
+				$('#J-switcher').coinslider({
+					hoverPause : false,
+					width : 620,
+					height : 390
+				});
+			});
+</script>
+{% endblock %}
+
+{% block frontmnav %}
+{{common.frontmnav("index")}}
+{% endblock %}
+
+{% block container %}
+<div class="main">
+	<div class="bg"></div>
+	<div class="s960 warp">
+		<div class="sec-1 pure-g">
+			<div class="pure-u-2-3">
+				<div class="left">
+					<div id="J-switcher">
+						{% for banner in bannerList %}
+						<a href="{{banner.url}}" target="_blank"> <img src="{{banner.path}}"/> <span> <b>{{banner.title}}</b></span> </a>
+						{% endfor %}				
+					</div>
+				</div>
+			</div>
+			<div class="pure-u-1-3">
+				<div class="right">
+					<div class="search clearfix">
+						<h3></h3>
+						<input type="text" id="J-search-inp"/>
+						<a href="#" id="J-search-btn"></a>
+						<div class="clearfix"></div>
+					</div>
+					<div class="sns clearfix">
+						<a href="#" class="ico weibo"></a>
+						<a href="#">新浪微博</a>
+						<a href="#" class="ico weixin"></a>
+						<a href="#">官方微信</a>
+					</div>
+					<div class="news">
+						<h3></h3>
+						<ul>
+							{% for activity in activityList %}
+							{% if 5 > loop.index %}
+							<li>
+								<p>
+									<a href="/activity/{{activity._id}}">点击进入》</a>
+									{{activity.title}}
+								</p>
+							</li>
+							{%endif%}
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="sec-2 clearfix">
+			<div class="deco"></div>
+			<ul>
+				<li class="cap">
+					<a href="#"> <h3></h3> </a>
+				</li>
+				{% for activity in activityList %}
+				<li>
+					<a href="/activity/{{activity._id}}"> <img src="{{activity._id|activityFM('fm')}}"/>
+					<div class="info">
+						<h4>{{activity.title}}</h4>
+						<p>
+							<span>TIME</span>{{activity.atime.strftime('%Y-%m-%d') if activity.atime else ''}}
+						</p>
+					</div> </a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<a href="/activity/list" class="sec-more"></a>
+		<div class="sec-3 clearfix">
+			<div class="cap">
+						<div class="links">
+                            <a href="/partner/list/wh">文化娱乐</a>
+                            <a href="/partner/list/ms">美食广场</a>
+                            <a href="/partner/list/ss">时尚服饰</a>
+                            <a href="/partner/list/sm">数码科技</a>
+                            <a href="/partner/list/sh">生活服务</a>
+                        </div>
+                        <h3></h3>
+                        <div class="deco"></div>
+                    </div>
+			<ul>
+				{% for partner in partnerList%}
+				<li>
+					<a href="/partner/{{partner._id}}"> <img src="{{partner._id|partner('logo')}}" /> <h4>{{partner.title}}</h4>
+					<p>
+						<span class="addr">ADD</span>{{partner.addr}}
+					</p>
+					<p class="text">
+						{{partner.intro|striptags|truncate(50,killwords=True)}}
+					</p> </a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<a href="/partner/alist" class="sec-more"></a>
+	</div>
+</div>
+{% endblock %}
+

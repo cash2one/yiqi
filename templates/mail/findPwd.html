@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+
+	</head>
+
+	<body>
+		<p>
+			<h3>Hi，{{nick}}：</h3>
+		</p>
+
+		<div>
+			<p>
+				您申请了重设走呗网密码，请点击下面的链接，然后根据页面提示完成密码重设：
+			</p>
+
+			<a href="{{gconf.domain}}{{link}}" target="_blank">{{gconf.domain}}{{link}}</a><span>（链接地址一天内有效）</span>
+
+			<p>
+				如果链接无法点击，请完整拷贝以下链接到浏览器地址栏里直接访问。
+				<br/>
+				{{gconf.domain}}{{link}}
+			</p>
+
+			<a href="{{gconf.domain}}/mdd/grp/n" target="_blank" style="text-decoration: none;"> 走呗网</a>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>后台管理登录</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" href="/static/zui/bootstrap/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/static/zui/bootstrap/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" href="/static/manage/css/styles.css"/>
+
+		<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="/static/js/formUtils.js"></script>
+		<script>
+			$(function() {
+				$('#back-login-btn').click(function() {
+					var data = $.formUtils.formData('.form-horizontal');
+					$.post('/mlogin', data, function(data) {
+						if (data.status == 1) {
+							if ($('#callback').val() == '') {
+								window.location.href = '/m/index';
+							} else {
+								window.location.href = $('#callback').val();
+							}
+
+						} else {
+							window.location.reload();
+						}
+					}, 'json');
+
+					return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="login-wrapper">
+			<div class="page-header text-center">
+				<h3><img src="/static/css/img/logo.png" alt="GatherContent logo"></h3>
+			</div>
+
+			<div class="well">
+				<div class="page-header">
+					<h3>Log in</h3>
+				</div>
+
+				<div style="">
+					<form class="form-horizontal">
+						<input type="hidden" name="call" id="callback" value="{{call}}" />
+						<input type="text" name="username" id="username" placeholder="账号">
+						<input type="password" name="password" id="password" placeholder="密码">
+						<div class="control-group">
+							<button type="submit" class="btn btn-success" id="back-login-btn">
+								Sign in
+							</button>
+							<a class="pull-right" style="line-height: 35px;" href="/#">回到首页>></a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
